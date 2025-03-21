@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "rollup-plugin-sourcemap-server",
+  "description": "a rollup plugin to serve source files over http in watch mode",
+  "keywords": ["rollup", "plugin"],
+  "author": "replcat",
+  "license": "MIT",
+  "version": "0.1.0",
+  "peerDependencies": {
+    "rollup": "^4"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "rollup": "^4"
+  }
+}
