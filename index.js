@@ -22,7 +22,7 @@ module.exports = function ({ host, port } = {}) {
     options(opts) {
       if (!server && this.meta.watchMode) {
         server = http.createServer(async (req, res) => {
-          let resolved_url = path.join(".", req.url ?? "")
+          let resolved_url = path.join(".", req.url ?? "").replace(/^(?:\.\/)?/, "./")
 
           /** @type {Stats|null} */
           let stats = null
@@ -34,7 +34,7 @@ module.exports = function ({ host, port } = {}) {
           let not_a_file = stats?.isFile() !== true
           let stats_summary = not_found ? "not found" : not_a_file ? "not a file" : "OK"
 
-          this.info(`request: ${req.url} → ./${resolved_url} (${stats_summary})`)
+          this.info(`request: ${req.url} → ${resolved_url} (${stats_summary})`)
 
           if (not_found || not_a_file) {
             res.writeHead(404)
