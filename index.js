@@ -22,7 +22,8 @@ module.exports = function ({ host, port } = {}) {
     options(opts) {
       if (!server && this.meta.watchMode) {
         server = http.createServer(async (req, res) => {
-          let resolved_url = path.join(".", req.url ?? "").replace(/^(?:\.\/)?/, "./")
+          let decoded_url = decodeURIComponent(req.url ?? "")
+          let resolved_url = path.join(".", decoded_url).replace(/^(?:\.\/)?/, "./")
 
           /** @type {Stats|null} */
           let stats = null
