@@ -39,7 +39,7 @@ module.exports = function ({ host, port } = {}) {
           if (not_found || not_a_file) {
             res.writeHead(404)
           } else {
-            res.writeHead(200, { "Content-Type": "text/plain" })
+            res.writeHead(200, { "Content-Type": get_content_type(resolved_url) })
             res.write(await fs.readFile(resolved_url))
           }
 
@@ -70,4 +70,22 @@ module.exports = function ({ host, port } = {}) {
       })
     },
   }
+}
+
+/** @type {Array<[RegExp, string]>} */
+const content_type_patterns = [
+  [/\.css$/, "text/css"],
+  [/\.html?$/, "text/html"],
+  [/\.[cm]?[jt]sx?$/, "application/javascript"],
+  [/\.json$/, "application/json"],
+  [/\.map$/, "application/json"],
+]
+
+/** @type {(url: string) => string} */
+function get_content_type(url) {
+  for (let [pattern, content_type] of content_type_patterns) {
+    if (pattern.test(url)) return content_type
+  }
+
+  return "text/plain"
 }
