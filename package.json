@@ -10,6 +10,7 @@
     "rollup": "^4"
   },
   "devDependencies": {
+    "@tsconfig/node-lts": "^22",
     "@types/node": "^22",
     "rollup": "^4"
   }

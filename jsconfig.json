@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/jsconfig.json",
+  "extends": "@tsconfig/node-lts/tsconfig.json",
   "compilerOptions": {
-    "checkJs": true,
-    "strict": true
+    "checkJs": true
   }
 }

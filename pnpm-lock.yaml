@@ -8,11 +8,14 @@ importers:
 
   .:
     devDependencies:
+      '@tsconfig/node-lts':
+        specifier: ^22
+        version: 22.0.1
       '@types/node':
-        specifier: ^22.13.11
+        specifier: ^22
         version: 22.13.11
       rollup:
-        specifier: ^4.36.0
+        specifier: ^4
         version: 4.36.0
 
 packages:
@@ -112,6 +115,9 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@tsconfig/node-lts@22.0.1':
+    resolution: {integrity: sha512-BwlbLiYurZKrj+Pa6etSE1jXmr3VEDdgJto1jEYKcpBVwZZSWVkCPyFEFYbHdIOaFMlSTtV206DYPlT109aqug==}
+
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
 
@@ -189,6 +195,8 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.36.0':
     optional: true
+
+  '@tsconfig/node-lts@22.0.1': {}
 
   '@types/estree@1.0.6': {}
 
