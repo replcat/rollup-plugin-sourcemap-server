@@ -37,13 +37,18 @@ module.exports = function ({ host, port } = {}) {
           this.info(`request: ${req.url} → ${resolved_url} (${stats_summary})`)
 
           if (not_found || not_a_file) {
-            res.writeHead(404)
-          } else {
-            res.writeHead(200, { "Content-Type": get_content_type(resolved_url) })
-            res.write(await fs.readFile(resolved_url))
+            res.writeHead(404).end("not found")
+            return
           }
 
-          res.end()
+          try {
+            res.writeHead(200, { "Content-Type": get_content_type(resolved_url) })
+            res.end(await fs.readFile(resolved_url))
+          } catch (err) {
+            // @ts-ignore
+            this.warn(`error reading file ${resolved_url}: ${err?.message ?? err}`)
+            res.writeHead(500).end("internal server error")
+          }
         })
 
         server.listen(port, host, () => {
