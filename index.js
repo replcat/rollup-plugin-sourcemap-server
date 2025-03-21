@@ -70,10 +70,12 @@ module.exports = function ({ host, port } = {}) {
     },
 
     async closeWatcher() {
-      return new Promise((resolve, reject) => {
-        this.info("shutting down...")
-        server?.close(err => err ? reject(err) : resolve())
-      })
+      if (server) {
+        return new Promise((resolve, reject) => {
+          this.info("shutting down...")
+          server?.close(err => err ? reject(err) : resolve())
+        })
+      }
     },
   }
 }
